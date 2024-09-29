@@ -1,0 +1,147 @@
+
+# Azure Subscription Management with PowerShell
+
+This repository contains scripts and instructions for managing Azure subscriptions using PowerShell. It includes commands to check the current subscription, list all available subscriptions, and switch between them.
+
+## Repository Overview
+
+### Folder Structure
+
+- **/scripts**: Contains PowerShell scripts for Azure subscription management.
+- **README.md**: Instructions on how to use the repository and its contents.
+
+### Repository Features
+
+- **Subscription Check**: Check the current subscription you're working in.
+- **List Subscriptions**: List all Azure subscriptions you have access to.
+- **Switch Subscriptions**: Easily switch between different Azure subscriptions.
+
+---
+
+## Prerequisites
+
+- **Azure PowerShell Module**: Ensure you have the `Az` module installed. If not, install it using:
+
+   ```powershell
+   Install-Module -Name Az -AllowClobber -Force
+   ```
+
+- **Azure Account Access**: You must have access to one or more Azure subscriptions.
+
+## Commands
+
+### 1. **Login to Azure Account**
+
+To manage Azure subscriptions, first, log in to your Azure account:
+
+```powershell
+Connect-AzAccount
+```
+
+This will open a browser window where you can authenticate with your Azure credentials.
+
+### 2. **Check the Current Subscription**
+
+To see which Azure subscription is currently active:
+
+```powershell
+Get-AzContext
+```
+
+Example output:
+```
+Name                                     Account            SubscriptionName       Environment         TenantId
+----                                     -------            ----------------       -----------         --------
+Visual Studio Enterprise (your current)  user@domain.com    Visual Studio Ent...    AzureCloud          xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+
+This shows the current subscription name, account, and other details.
+
+### 3. **List All Subscriptions**
+
+To list all subscriptions you have access to:
+
+```powershell
+Get-AzSubscription
+```
+
+This command will list all subscriptions, including their names, IDs, and tenant IDs.
+
+### 4. **Switch Between Subscriptions**
+
+If you have multiple subscriptions and want to switch to another:
+
+```powershell
+Set-AzContext -Subscription "SubscriptionName or SubscriptionId"
+```
+
+Replace `"SubscriptionName or SubscriptionId"` with the name or ID of the subscription you want to switch to. After switching, all subsequent commands will run within the selected subscription.
+
+---
+
+## Example Workflow
+
+1. **Login** to your Azure account:
+   ```powershell
+   Connect-AzAccount
+   ```
+
+2. **Check the current subscription**:
+   ```powershell
+   Get-AzContext
+   ```
+
+3. **List all subscriptions**:
+   ```powershell
+   Get-AzSubscription
+   ```
+
+4. **Switch to a different subscription**:
+   ```powershell
+   Set-AzContext -Subscription "SubscriptionId"
+   ```
+
+---
+
+## Scripts in the Repository
+
+### 1. **Login to Azure Account Script** (located in `/scripts/ConnectToAzure.ps1`)
+
+```powershell
+# Connect to Azure Account
+Connect-AzAccount
+```
+
+### 2. **Check Current Subscription Script** (located in `/scripts/GetCurrentSubscription.ps1`)
+
+```powershell
+# Check the current Azure subscription
+Get-AzContext
+```
+
+### 3. **List All Subscriptions Script** (located in `/scripts/ListAllSubscriptions.ps1`)
+
+```powershell
+# List all subscriptions
+Get-AzSubscription
+```
+
+### 4. **Switch Subscription Script** (located in `/scripts/SwitchSubscription.ps1`)
+
+```powershell
+# Switch to a specific subscription
+Set-AzContext -Subscription "SubscriptionName or SubscriptionId"
+```
+
+---
+
+## Notes
+
+- **Permissions**: Ensure you have the proper permissions for each subscription you're trying to access or switch to.
+- **Multiple Accounts**: If you have access to multiple accounts, you can switch contexts by specifying the account along with the subscription.
+
+---
+
+## License
+
+This repository is licensed under the MIT License. Feel free to use, modify, or distribute the scripts as needed.
